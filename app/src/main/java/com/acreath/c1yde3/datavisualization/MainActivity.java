@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
      * 创建文件夹
      * @param dir
      */
-    public  void makeDir(File dir) {
+    public void makeDir(File dir) {
         if (!dir.getParentFile().exists()) {
             makeDir(dir.getParentFile());
         }
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                     publishProgress(step);
                 }
                 for(int j = 0;j < valueLength - maxLength ; j++){
-                    Log.i("线程"," "+(j+maxLength)+":"+x+":"+y+":"+z+":"+step+" max:"+maxLength+" aavg:"+aAvg+" bAbg:"+bAvg+" astd:"+aStd+" bstd:"+bStd);
+                    Log.i("线程","num"+(valueLength-maxLength)+" x:"+x+" y:"+y+" z:"+z+" step:"+step+" max:"+maxLength+" aavg:"+aAvg+" bAbg:"+bAvg+" astd:"+aStd+" bstd:"+bStd);
                     Acc[j]=Acc[j + maxLength];
                 }
                 nowLength = valueLength - maxLength;
