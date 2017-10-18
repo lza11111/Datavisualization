@@ -163,10 +163,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             float[] Acc=new float[valueLength];
             int nowLength = 0;
             //int step = 0;
-            float aAvg;
-            float bAvg;
-            float aStd;
-            float bStd;
+            float aAvg = 0;
+            float bAvg = 0;
+            float aStd = 0;
+            float bStd = 0;
             while(true){
                 while(nowLength < valueLength){
                     float x = getX();    //获取数据
@@ -191,8 +191,9 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                     float cc = 0;
                     for(int j = 0; j < i + offset; j++){
                         cc += Math.abs((aArray[j] - aAvg)*(bArray[j] - bAvg));
-                        Log.d("cc",":"+cc);
+                        //Log.d("cc",":"+cc);
                     }
+                    Log.d("cc",":"+cc);
                     cc /= (i + offset) * aStd * bStd;
                     if(cc > maxcc){
                         maxcc = cc;
@@ -205,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                     publishProgress(step);
                 }
                 for(int j = 0;j < valueLength - maxLength ; j++){
-                    Log.i("线程"," "+(j+maxLength)+":"+x+":"+y+":"+z+":"+step+"max"+maxLength);
+                    Log.i("线程"," "+(j+maxLength)+":"+x+":"+y+":"+z+":"+step+" max:"+maxLength+" aavg:"+aAvg+" bAbg:"+bAvg+" astd:"+aStd+" bstd:"+bStd);
                     Acc[j]=Acc[j + maxLength];
                 }
                 nowLength = valueLength - maxLength;
@@ -255,7 +256,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     }
     private float calcStd(float[] array){
         int len = array.length;
-        int sum = 0;
+        float sum = 0;
         float avg = calcAvg(array);
         for(int i = 0; i < len; i++){
             sum += (array[i] - avg) * (array[i] - avg);
